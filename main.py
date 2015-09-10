@@ -110,11 +110,11 @@ class MicroHighlighter(QtGui.QSyntaxHighlighter):
     def highlightBlock(self, text):
         
         currentPosition = self.currentBlock().position()
-        textToHighlight = unicode(self.text.toPlainText()) + '\n'
+        textToHighlight = str(self.text.toPlainText()) + '\n'
         
         highlight(textToHighlight, get_lexer_by_name(self.language, stripall=True), self.formatter)
         
-        for i in range(len(unicode(text))):
+        for i in range(len(str(text))):
             try:
                 self.setFormat(i,1,self.formatter.data[currentPosition+i])
             except IndexError:
